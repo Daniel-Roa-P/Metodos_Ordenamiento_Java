@@ -8,6 +8,8 @@ public class Seleccion extends Metodo{
     @Override
     public int ordenar(int[] lista){
         
+        this.lista = lista;
+        
         int t,i,j,x;
         int N = lista.length;
         mitad = (int) N/2;
@@ -48,7 +50,19 @@ public class Seleccion extends Metodo{
 
     @Override
     public int calcularMejor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if(lista.length%2 !=0){
+        
+            formula = (5*(mitad)*(mitad+1)) + 8*(mitad) + 3;
+        
+        } else {
+        
+            formula = (5*(mitad)*(mitad)) + 8*(mitad) + 3;
+            
+        }
+        
+        return formula;
+        
     }
 
     @Override
@@ -68,8 +82,6 @@ public class Seleccion extends Metodo{
             formula = (6*(mitad)*(mitad)) + 7*(mitad) + 8*(mitad) + 3;
             
         }
-        
-        System.out.println("formula: " + formula);
     
         return formula;
         

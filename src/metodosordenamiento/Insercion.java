@@ -11,7 +11,7 @@ public class Insercion extends Metodo {
         int j, temp;
         int i = 1;
         
-        contador = contador + 2;
+        contador =  2;
         
         while (i < lista.length) {
             
@@ -34,13 +34,19 @@ public class Insercion extends Metodo {
             
         }
         
+        contador = contador + 2;
+        
         return contador;
         
     }
 
     @Override
     public int calcularMejor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        formula = 12*(lista.length-1) + 4;
+        
+        return formula; 
+        
     }
 
     @Override
@@ -51,7 +57,7 @@ public class Insercion extends Metodo {
     @Override
     public int calcularPeor() {
         
-        formula = 8*(((lista.length/2)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4;
+        formula = (int) (8*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
         
         return formula; 
     

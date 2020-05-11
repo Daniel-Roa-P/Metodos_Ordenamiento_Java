@@ -47,7 +47,9 @@ public class Burbuja extends Metodo{
 
     @Override
     public int calcularMedio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return ((17*((lista.length)*(lista.length))) + 7*(lista.length) - 12)/4 ;
+        
     }
 
     @Override

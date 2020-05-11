@@ -16,6 +16,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JButton botonInsercion = new JButton("Insercion");
     private int [] lista;
     private Metodo metodo;
+    int largo = 97;
     
     public static void main(String[] args) {
         
@@ -50,9 +51,9 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     
     public void llenarPeorLista(){
         
-        int numero = 150;
+        int numero = largo;
         
-        lista = new int[numero];
+        lista = new int[largo];
         
         for(int i = 0; i<lista.length; i++){
             
@@ -60,15 +61,12 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             numero--;
             
         }
-        
-        
+            
     }
     
     public void llenarMejorLista(){
         
-        int numero = 150;
-        
-        lista = new int[numero];
+        lista = new int[largo];
         
         for(int i = 0; i<lista.length; i++){
             
@@ -77,6 +75,18 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         }
         
         
+    }
+    
+    public void llenarListaMedia(){
+        
+        lista = new int[largo];
+        
+        for(int i = 0; i<lista.length; i++){
+            
+            lista[i] = (int) ((int) largo*Math.random());
+            
+        }
+              
     }
     
     @Override
@@ -96,6 +106,11 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             System.out.println("Contador: " + metodo.ordenar(lista));
             System.out.println("Formula: " + metodo.calcularMejor());
             
+            llenarListaMedia();
+            
+            System.out.println("Contador: " + metodo.ordenar(lista));
+            System.out.println("Formula: " + metodo.calcularMedio());
+            
         } else if(e.getSource() == botonSeleccion){
             
             llenarPeorLista();
@@ -105,6 +120,11 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             System.out.println("Contador: " + metodo.ordenar(lista));
             System.out.println("Formula: " + metodo.calcularPeor());
             
+            llenarMejorLista();
+            
+            System.out.println("Contador: " + metodo.ordenar(lista));
+            System.out.println("Formula: " + metodo.calcularMejor());
+            
         }   else if(e.getSource() == botonInsercion){
             
             llenarPeorLista();
@@ -113,6 +133,11 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             
             System.out.println("Contador: " + metodo.ordenar(lista));
             System.out.println("Formula: " + metodo.calcularPeor());
+            
+            llenarMejorLista();
+            
+            System.out.println("Contador: " + metodo.ordenar(lista));
+            System.out.println("Formula: " + metodo.calcularMejor());
             
         }
         

@@ -4,7 +4,7 @@ package metodosordenamiento;
 public class Insercion extends Metodo {
  
     @Override
-    public int ordenar(int[] lista) {
+    public void ordenar(int[] lista) {
         
         this.lista = lista;
         
@@ -36,34 +36,32 @@ public class Insercion extends Metodo {
         
         contador = contador + 2;
         
-        return contador;
-        
     }
 
     @Override
-    public int calcularMejor() {
-    
-        formula = 12*(lista.length-1) + 4;
+    public int calcularFormula(String caso) {
         
-        return formula; 
+        if(caso.equals("mejor")){
         
-    }
-
-    @Override
-    public int calcularMedio() {
+            formula = 12*(lista.length-1) + 4;
         
-        formula = (int) (4*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
+            return formula;
+            
+        } else if (caso.equals("medio")){
         
-        return formula;
+            
+            formula = (int) (4*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
         
-    }
-
-    @Override
-    public int calcularPeor() {
+            return formula;
+            
         
-        formula = (int) (8*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
+        } else {
+            
+            formula = (int) (8*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
         
-        return formula; 
+            return formula;
+            
+        }
     
     }
     

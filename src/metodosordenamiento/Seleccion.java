@@ -6,7 +6,7 @@ public class Seleccion extends Metodo{
     int mitad;
     
     @Override
-    public int ordenar(int[] lista){
+    public void ordenar(int[] lista){
         
         this.lista = lista;
         
@@ -43,60 +43,55 @@ public class Seleccion extends Metodo{
             }
             
         }
-            
-        return contador;
         
     }
 
     @Override
-    public int calcularMejor() {
+    public int calcularFormula(String caso) {
         
-        if(lista.length%2 !=0){
+        if(caso.equals("mejor")){
         
-            formula = (5*(mitad)*(mitad+1)) + 8*(mitad) + 3;
+            if(lista.length%2 !=0){
         
-        } else {
-        
-            formula = (5*(mitad)*(mitad)) + 8*(mitad) + 3;
-            
-        }
-        
-        return formula;
-        
-    }
+                formula = (5*(mitad)*(mitad+1)) + 8*(mitad) + 3;
 
-    @Override
-    public int calcularMedio() {
-    
-        
-        if(lista.length%2 !=0){
-        
-            formula = (6*(mitad)*(mitad+1)) + (7/2)*(mitad) + 8*(mitad) + 3;
-        
-        } else {
-        
-            formula = (6*(mitad)*(mitad)) + (7/2)*(mitad) + 8*(mitad) + 3;
-            
-        }
-    
-        return formula;
-        
-    }
+            } else {
 
-    @Override
-    public int calcularPeor() {
+                formula = (5*(mitad)*(mitad)) + 8*(mitad) + 3;
+
+            }
+
+            return formula;
+            
+        } else if (caso.equals("medio")){
         
-        if(lista.length%2 !=0){
+            if(lista.length%2 !=0){
         
-            formula = (6*(mitad)*(mitad+1)) + 7*(mitad) + 8*(mitad) + 3;
+                formula = (6*(mitad)*(mitad+1)) + (7/2)*(mitad) + 8*(mitad) + 3;
+
+            } else {
+
+                formula = (6*(mitad)*(mitad)) + (7/2)*(mitad) + 8*(mitad) + 3;
+
+            }
+
+            return formula;        
         
         } else {
+            
+            if(lista.length%2 !=0){
         
-            formula = (6*(mitad)*(mitad)) + 7*(mitad) + 8*(mitad) + 3;
+                formula = (6*(mitad)*(mitad+1)) + 7*(mitad) + 8*(mitad) + 3;
+
+            } else {
+
+                formula = (6*(mitad)*(mitad)) + 7*(mitad) + 8*(mitad) + 3;
+
+            }
+
+            return formula;
             
         }
-    
-        return formula;
         
     }
     

@@ -7,15 +7,13 @@ public abstract class Metodo {
     protected int formula;
     protected int contador = 0;
     
-    public abstract int ordenar(int[] lista);
+    public abstract void ordenar(int[] lista);
 
     public int getContador() {
         return contador;
     }
 
-    public abstract int calcularMejor();
-    public abstract int calcularMedio();
-    public abstract int calcularPeor();
+    public abstract int calcularFormula(String caso);
     
     
 }

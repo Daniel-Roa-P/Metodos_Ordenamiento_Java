@@ -31,11 +31,11 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JTextField fIns = new JTextField();
     JTextField cSel = new JTextField();
     JTextField fSel = new JTextField();
-    JTextField tamaño = new JTextField();
+    JTextField tamaño = new JTextField("100");
     
-    private int [] lista;
+    private int [] lista,lista2,lista3;
     private Metodo metodo;
-    int largo;
+    int largo = 100;
     
     public static void main(String[] args) {
         
@@ -108,10 +108,14 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         int numero = largo;
         
         lista = new int[largo];
+        lista2 = new int[largo];
+        lista3 = new int[largo];
         
         for(int i = 0; i<lista.length; i++){
             
             lista[i]=numero;
+            lista2[i]=numero;
+            lista3[i]=numero;
             numero--;
             
         }
@@ -121,10 +125,14 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     public void llenarMejorLista(){
         
         lista = new int[largo];
+        lista2 = new int[largo];
+        lista3 = new int[largo];
         
         for(int i = 0; i<lista.length; i++){
             
             lista[i]=i;
+            lista2[i]=i;
+            lista3[i]=i;
             
         }
         
@@ -134,13 +142,39 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     public void llenarListaMedia(){
         
         lista = new int[largo];
+        lista2 = new int[largo];
+        lista3 = new int[largo];
         
         for(int i = 0; i<lista.length; i++){
+        
+            int aleatorio = (int) ((int) largo*Math.random());
             
-            lista[i] = (int) ((int) largo*Math.random());
+            lista[i] = aleatorio;
+            lista2[i] = aleatorio;
+            lista3[i] = aleatorio;
             
         }
               
+    }
+    
+    public void calcular(String caso){
+        
+        metodo = new Burbuja();
+        metodo.ordenar(lista);
+        cBur.setText(Integer.toString(metodo.getContador()));
+        fBur.setText(Integer.toString(metodo.calcularFormula(caso)));
+        
+        metodo = new Insercion();
+        
+        metodo.ordenar(lista2);
+        cIns.setText(Integer.toString(metodo.getContador()));
+        fIns.setText(Integer.toString(metodo.calcularFormula(caso)));
+        
+        metodo = new Seleccion();
+        metodo.ordenar(lista3);
+        cSel.setText(Integer.toString(metodo.getContador()));
+        fSel.setText(Integer.toString(metodo.calcularFormula(caso)));
+        
     }
     
     @Override
@@ -152,78 +186,18 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             
         }else if(e.getSource() == botonMejor){
             
-            llenarPeorLista();
+            llenarMejorLista();  
+            calcular("mejor");
             
-            metodo = new Burbuja();
-            
-            System.out.println("Peor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularPeor());
-            
-            llenarMejorLista();
-            
-            System.out.println("mejor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMejor());
+        } else if(e.getSource() == botonMedio){;
             
             llenarListaMedia();
-            
-            System.out.println("medio");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMedio());
-            
-        } else if(e.getSource() == botonMedio){
-            
-            metodo = new Seleccion();
-            
-            llenarPeorLista();
-            
-            System.out.println("Peor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularPeor());
-            
-            llenarMejorLista();
-            
-            System.out.println("mejor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMejor());
-            
-            llenarListaMedia();
-            
-            System.out.println("medio");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMedio());
+            calcular("medio");
             
         }   else if(e.getSource() == botonPeor){
             
             llenarPeorLista();
-            
-            metodo = new Insercion();
-            
-            System.out.println("Peor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularPeor());
-            
-            llenarMejorLista();
-            
-            System.out.println("mejor");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMejor());
-            
-            llenarListaMedia();
-            
-            System.out.println("medio");
-            
-            System.out.println("Contador: " + metodo.ordenar(lista));
-            System.out.println("Formula: " + metodo.calcularMedio());
+            calcular("peor");
             
         }
         

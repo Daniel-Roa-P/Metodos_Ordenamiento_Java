@@ -4,7 +4,7 @@ package metodosordenamiento;
 public class Burbuja extends Metodo{
     
     @Override
-    public int ordenar(int[] lista){
+    public void ordenar(int[] lista){
         
         this.lista = lista;
         
@@ -32,33 +32,30 @@ public class Burbuja extends Metodo{
             
         }
         
-        return contador;
-        
     }
 
     @Override
-    public int calcularMejor() {
+    public int calcularFormula(String caso) {
         
-        formula = (5*(lista.length)*(lista.length) + 7*lista.length - 6) / 2;
+        if(caso.equals("mejor")){
         
-        return formula;
+            formula = (5*(lista.length)*(lista.length) + 7*lista.length - 6) / 2;
         
-    }
-
-    @Override
-    public int calcularMedio() {
+            return formula;
+            
+        } else if (caso.equals("medio")){
         
-        return ((17*((lista.length)*(lista.length))) + 7*(lista.length) - 12)/4 ;
+            return ((17*((lista.length)*(lista.length))) + 7*(lista.length) - 12)/4 ;
         
-    }
-
-    @Override
-    public int calcularPeor() {
-        
-       formula = 6*((lista.length)*(lista.length)) - 3 ;
+        } else {
+            
+            formula = 6*((lista.length)*(lista.length)) - 3 ;
        
-       return formula;
-       
+            return formula;
+            
+        }
+        
+        
     }
     
 }

@@ -67,7 +67,20 @@ public class Seleccion extends Metodo{
 
     @Override
     public int calcularMedio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        
+        if(lista.length%2 !=0){
+        
+            formula = (6*(mitad)*(mitad+1)) + (7/2)*(mitad) + 8*(mitad) + 3;
+        
+        } else {
+        
+            formula = (6*(mitad)*(mitad)) + (7/2)*(mitad) + 8*(mitad) + 3;
+            
+        }
+    
+        return formula;
+        
     }
 
     @Override

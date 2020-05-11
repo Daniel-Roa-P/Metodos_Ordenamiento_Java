@@ -51,7 +51,11 @@ public class Insercion extends Metodo {
 
     @Override
     public int calcularMedio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        formula = (int) (4*(((lista.length/2.0)*(lista.length+1)) - lista.length) + 12*(lista.length-1) + 4);
+        
+        return formula;
+        
     }
 
     @Override

@@ -3,6 +3,7 @@ package metodosordenamiento;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JButton botonMedio = new JButton("Calcular caso medio");
     JButton botonPeor = new JButton("Calcular peor caso");
     JButton botonIngreso = new JButton("Ingresar tamaño");
+    JButton botonGraficar = new JButton("Graficar caso (20 - 500 de 10 en 10)");
     
     JLabel jLNumero = new JLabel("Ingrese el tamaño del arreglo");
     JLabel jLFormula = new JLabel("OE por formula");
@@ -25,6 +27,26 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JLabel jLIns = new JLabel("Metodo de insercion: ");
     JLabel jLSel = new JLabel("Metodo de seleccion: ");
     
+    JLabel maximo = new JLabel("1.500.000");
+    JLabel y1 = new JLabel("1.250.000");
+    JLabel y2 = new JLabel("1.000.000");
+    JLabel y3 = new JLabel("750.000");
+    JLabel y4 = new JLabel("500.000");
+    JLabel y5 = new JLabel("250.000");
+    JLabel y6 = new JLabel("0");
+    
+    JLabel x1 = new JLabel("500");
+    JLabel x2 = new JLabel("450");
+    JLabel x3 = new JLabel("400");
+    JLabel x4 = new JLabel("350");
+    JLabel x5 = new JLabel("300");
+    JLabel x6 = new JLabel("250");
+    JLabel x7 = new JLabel("200");
+    JLabel x8 = new JLabel("150");
+    JLabel x9 = new JLabel("100");
+    JLabel x10 = new JLabel("50");
+    JLabel x11 = new JLabel("20");
+    
     JTextField cBur = new JTextField();
     JTextField fBur = new JTextField();
     JTextField cIns = new JTextField();
@@ -32,6 +54,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JTextField cSel = new JTextField();
     JTextField fSel = new JTextField();
     JTextField tamaño = new JTextField("100");
+    
     
     private int [] lista,lista2,lista3;
     private Metodo metodo;
@@ -57,6 +80,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         c.add(botonMedio);
         c.add(botonPeor);
         c.add(botonIngreso);
+        c.add(botonGraficar);
         
         c.add(jLNumero);
         c.add(jLFormula);
@@ -64,6 +88,27 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         c.add(jLBur);
         c.add(jLIns);
         c.add(jLSel);
+        
+        c.add(maximo);
+        
+        c.add(y1);
+        c.add(y2);
+        c.add(y3);
+        c.add(y4);
+        c.add(y5);
+        c.add(y6);
+        
+        c.add(x1);
+        c.add(x2);
+        c.add(x3);
+        c.add(x4);
+        c.add(x5);
+        c.add(x6);
+        c.add(x7);
+        c.add(x8);
+        c.add(x9);
+        c.add(x10);
+        c.add(x11);
         
         c.add(cBur);
         c.add(fBur);
@@ -100,7 +145,9 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         botonPeor.setBounds(800, 150, 250, 20);
         botonPeor.setBackground(Color.red);
         botonPeor.addActionListener(this);
-        
+        botonGraficar.setBounds(100, 180, 950, 20);
+        botonGraficar.addActionListener(this);
+        botonGraficar.setBackground(Color.ORANGE);
     }
     
     public void llenarPeorLista(){
@@ -177,6 +224,39 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         
     }
     
+    public void pintar(){
+        
+        Graphics g = getGraphics();
+        
+        g.drawLine(100, 240, 100, 650);
+        g.drawLine(100, 240, 98, 245);
+        g.drawLine(100, 240, 102, 245);
+        
+        maximo.setBounds(30, 215, 60, 10);
+        y1.setBounds(30, 281, 60, 10);
+        y2.setBounds(30, 347, 60, 10);
+        y3.setBounds(40, 413, 50, 10);
+        y4.setBounds(40, 479, 50, 10);
+        y5.setBounds(40, 545, 50, 10);
+        y6.setBounds(80, 615, 10, 10);
+        
+        g.drawLine(100, 650, 1150, 650);
+        g.drawLine(1145, 648, 1150, 650);
+        g.drawLine(1145, 652, 1150, 650);
+        
+        x1.setBounds(1085, 630, 40, 10);
+        x2.setBounds(985, 630, 40, 10);
+        x3.setBounds(885, 630, 40, 10);
+        x4.setBounds(785, 630, 40, 10);
+        x5.setBounds(685, 630, 40, 10);
+        x6.setBounds(585, 630, 40, 10);
+        x7.setBounds(485, 630, 40, 10);
+        x8.setBounds(385, 630, 40, 10);
+        x9.setBounds(285, 630, 40, 10);
+        x10.setBounds(185, 630, 40, 10);
+        x11.setBounds(125, 630, 40, 10);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -199,11 +279,12 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             llenarPeorLista();
             calcular("peor");
             
+        } else if (e.getSource() == botonGraficar){
+            
+            pintar();
+            
         }
         
-        
-    }
-    
-    
+    } 
     
 }

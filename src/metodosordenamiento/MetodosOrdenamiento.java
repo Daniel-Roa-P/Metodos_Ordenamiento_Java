@@ -18,7 +18,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JButton botonMedio = new JButton("Calcular caso medio");
     JButton botonPeor = new JButton("Calcular peor caso");
     JButton botonIngreso = new JButton("Ingresar tamaño");
-    JButton botonGraficar = new JButton("Graficar caso (20 - 500 de 10 en 10)");
+    JButton botonGraficar = new JButton("Graficar peor caso (20 - 500 de 10 en 10)");
     
     JLabel jLNumero = new JLabel("Ingrese el tamaño del arreglo");
     JLabel jLFormula = new JLabel("OE por formula");
@@ -255,6 +255,61 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         x9.setBounds(285, 630, 40, 10);
         x10.setBounds(185, 630, 40, 10);
         x11.setBounds(125, 630, 40, 10);
+        
+        int espacio = 20;
+        int ejeY, ejeY2, ejeY3, contador;
+        int anteriorY = 650;
+        int anteriorY2 = 650;
+        int anteriorY3 = 650;
+        
+        while(espacio <= 500){
+        
+            largo = espacio;
+            
+            llenarPeorLista();
+            
+            metodo = new Burbuja();
+            
+            metodo.ordenar(lista);
+            
+            contador = metodo.getContador();
+            
+            ejeY = (int) (650 - 400*(contador/(1499997.0)));
+            
+            g.setColor(Color.red);
+            g.drawLine(100+(espacio*2), ejeY, 100+((espacio-10)*2), anteriorY);
+            
+            metodo = new Insercion();
+            
+            metodo.ordenar(lista2);
+            
+            contador = metodo.getContador();
+            
+            ejeY2 = (int) (650 - 400*(contador/(1499997.0)));
+            
+            g.setColor(Color.BLUE);
+            g.drawLine(100+(espacio*2), ejeY2, 100+((espacio-10)*2), anteriorY2);
+            
+            metodo = new Seleccion();
+            
+            metodo.ordenar(lista3);
+            
+            contador = metodo.getContador();
+            
+            ejeY3 = (int) (650 - 400*(contador/(1499997.0)));
+            
+            g.setColor(Color.GREEN);
+            g.drawLine(100+(espacio*2), ejeY3, 100+((espacio-10)*2), anteriorY3);
+            
+            espacio = espacio + 10; 
+            
+            anteriorY=ejeY;
+            anteriorY2=ejeY2;
+            anteriorY3=ejeY3;
+        
+        }
+        
+        
     }
     
     @Override

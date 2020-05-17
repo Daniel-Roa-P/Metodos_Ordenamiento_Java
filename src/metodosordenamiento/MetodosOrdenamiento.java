@@ -26,6 +26,9 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JLabel jLBur = new JLabel("Metodo de burbuja: ");
     JLabel jLIns = new JLabel("Metodo de insercion: ");
     JLabel jLSel = new JLabel("Metodo de seleccion: ");
+    JLabel jL1 = new JLabel("Burbuja ");
+    JLabel jL2 = new JLabel("Insercion ");
+    JLabel jL3 = new JLabel("Seleccion ");
     
     JLabel maximo = new JLabel("1.500.000");
     JLabel y1 = new JLabel("1.250.000");
@@ -55,6 +58,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     JTextField fSel = new JTextField();
     JTextField tamaño = new JTextField("100");
     
+    String situacion = "peor";
     
     private int [] lista,lista2,lista3;
     private Metodo metodo;
@@ -63,7 +67,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
     public static void main(String[] args) {
         
         MetodosOrdenamiento m = new MetodosOrdenamiento();
-        m.setSize(1200, 700);
+        m.setSize(1200, 750);
         m.setTitle("Metodos de oredenamiento");
         m.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         m.setVisible(true);
@@ -88,6 +92,9 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         c.add(jLBur);
         c.add(jLIns);
         c.add(jLSel);
+        c.add(jL3);
+        c.add(jL2);
+        c.add(jL1);
         
         c.add(maximo);
         
@@ -224,7 +231,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         
     }
     
-    public void pintar(){
+    public void pintar(String sit){
         
         Graphics g = getGraphics();
         
@@ -256,17 +263,39 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         x10.setBounds(185, 630, 40, 10);
         x11.setBounds(125, 630, 40, 10);
         
+        jL1.setBounds(320, 660, 100, 15);
+        g.setColor(Color.red);
+        g.drawLine(300, 700, 310, 700);
+        jL2.setBounds(520, 660, 100, 15);
+        g.setColor(Color.blue);
+        g.drawLine(500, 700, 510, 700);
+        jL3.setBounds(720, 660, 100, 15);
+        g.setColor(Color.green);
+        g.drawLine(700, 700, 710, 700);
+        
         int espacio = 20;
         int ejeY, ejeY2, ejeY3, contador;
         int anteriorY = 650;
         int anteriorY2 = 650;
         int anteriorY3 = 650;
-        
+            
         while(espacio <= 500){
         
             largo = espacio;
             
-            llenarPeorLista();
+            if(sit.equals("mejor")){
+        
+                llenarMejorLista();
+
+            } else if (sit.equals("medio")){
+
+                llenarListaMedia();
+                
+            } else {
+
+                llenarPeorLista();
+                
+            }
             
             metodo = new Burbuja();
             
@@ -309,6 +338,7 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
         
         }
         
+        largo = Integer.parseInt(tamaño.getText());
         
     }
     
@@ -321,22 +351,31 @@ public class MetodosOrdenamiento extends JFrame implements ActionListener{
             
         }else if(e.getSource() == botonMejor){
             
-            llenarMejorLista();  
-            calcular("mejor");
+            llenarMejorLista();
+            botonGraficar.setText("Graficar mejor caso (20 - 500 de 10 en 10)");
+            situacion = "mejor";           
+            calcular(situacion);
             
         } else if(e.getSource() == botonMedio){;
             
             llenarListaMedia();
-            calcular("medio");
+            situacion = "medio";
+            botonGraficar.setText("Graficar caso promedio (20 - 500 de 10 en 10)");
+            calcular(situacion);
             
         }   else if(e.getSource() == botonPeor){
             
             llenarPeorLista();
-            calcular("peor");
+            situacion = "peor";
+            botonGraficar.setText("Graficar peor caso (20 - 500 de 10 en 10)");
+            calcular(situacion);
             
         } else if (e.getSource() == botonGraficar){
             
-            pintar();
+            Graphics g = getGraphics();
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(102, 250, 1200, 400);
+            pintar(situacion);
             
         }
         
